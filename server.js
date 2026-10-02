@@ -1,4 +1,11 @@
-const db = require("./database.js");
+const { Pool } = require("pg");
+
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 const Fastify = require("fastify");
 const cors = require("@fastify/cors");
 const helmet = require("@fastify/helmet");
