@@ -13,6 +13,11 @@ const helmet = require("@fastify/helmet");
 const rateLimit = require("@fastify/rate-limit");
 
 const app = Fastify({
+app.register(cors, {
+  origin: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+});
   logger: true
 });
 
