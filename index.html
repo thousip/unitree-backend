@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070a12">
+<title>UNITREE</title>
+
+<style>
+:root{
+--bg:#070a12;
+--panel:#0d111b;
+--panel2:#111827;
+--text:#f7f9fc;
+--muted:#9aa4b5;
+--line:rgba(255,255,255,.09);
+--accent:#54f0ff;
+--accent2:#8b5cf6;
+--green:#65ff9a;
+--danger:#ff5f7a;
+--shadow:0 18px 60px rgba(0,0,0,.35)
+}
+
+*{box-sizing:border-box}
+
+html{background:var(--bg)}
+
+body{
+margin:0;
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:
+radial-gradient(circle at 20% 0%,rgba(84,240,255,.09),transparent 30%),
+radial-gradient(circle at 90% 15%,rgba(139,92,246,.11),transparent 28%),
+var(--bg);
+color:var(--text);
+min-height:100vh
+}
+
+.hidden{display:none!important}
+button,input{font:inherit}
+
+#splash{
+position:fixed;
+inset:0;
+background:linear-gradient(145deg,#05070c,#0d1220);
+display:grid;
+place-content:center;
+text-align:center;
+z-index:50;
+animation:fadeOut 1s 1.15s forwards
+}
+
+.u{
+width:82px;
+height:82px;
+border-radius:25px;
+background:linear-gradient(135deg,var(--accent),#8b5cf6);
+color:#05070c;
+display:grid;
+place-items:center;
+font-size:49px;
+font-weight:950;
+margin:auto;
+box-shadow:0 0 55px rgba(84,240,255,.28);
+animation:float 2.2s ease-in-out infinite
+}
+
+.sname{
+font-weight:950;
+letter-spacing:8px;
+font-size:26px;
+margin-top:17px
+}
+
+.sline{
+height:3px;
+width:60px;
+background:var(--accent);
+margin:13px auto 0;
+border-radius:99px;
+box-shadow:0 0 20px var(--accent)
+}
+
+.login{
+min-height:100vh;
+display:grid;
+place-items:center;
+padding:25px
+}
+
+.box{
+width:min(430px,100%);
+padding:30px 24px;
+background:rgba(13,17,27,.82);
+border:1px solid var(--line);
+border-radius:28px;
+box-shadow:var(--shadow);
+backdrop-filter:blur(18px)
+}
+
+.brand{
+font-size:29px;
+font-weight:950;
+letter-spacing:5px
+}
+
+.sub{color:var(--muted)}
+
+.box label{
+display:block;
+margin:17px 0 7px;
+color:#dbe2ee;
+font-size:13px
+}
+
+.box input,.btn{
+width:100%;
+height:52px;
+border-radius:13px
+}
+
+.box input{
+border:1px solid var(--line);
+background:#080c14;
+color:var(--text);
+padding:0 14px;
+outline:none
+}
+
+.box input:focus{
+border-color:var(--accent);
+box-shadow:0 0 0 3px rgba(84,240,255,.1)
+}
+
+.btn{
+border:0;
+background:linear-gradient(100deg,var(--accent),#8b5cf6);
+color:#05070c;
+font-weight:950;
+cursor:pointer;
+box-shadow:0 12px 30px rgba(84,240,255,.13);
+transition:.25s
+}
+
+.btn:active{transform:scale(.98)}
+
+.wa{
+display:flex;
+justify-content:center;
+align-items:center;
+height:52px;
+border:1px solid rgba(101,255,154,.45);
+background:rgba(101,255,154,.07);
+border-radius:13px;
+text-decoration:none;
+color:var(--green);
+font-weight:800;
+margin-top:12px;
+transition:.25s
+}
+
+.header{
+height:66px;
+border-bottom:1px solid var(--line);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 18px;
+position:sticky;
+top:0;
+background:rgba(7,10,18,.78);
+backdrop-filter:blur(18px);
+z-index:10
+}
+
+.help{
+border:1px solid var(--line);
+background:rgba(255,255,255,.04);
+color:var(--text);
+border-radius:20px;
+padding:8px 14px;
+cursor:pointer
+}
+
+.tab{
+max-width:900px;
+margin:auto;
+padding:22px 16px 105px
+}
+
+.hero{
+position:relative;
+overflow:hidden;
+padding:27px 22px;
+margin-bottom:24px;
+border:1px solid var(--line);
+border-radius:24px;
+background:linear-gradient(135deg,rgba(84,240,255,.11),rgba(139,92,246,.09) 48%,rgba(255,255,255,.02));
+box-shadow:var(--shadow)
+}
+
+.hero:after{
+content:"";
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+right:-70px;
+top:-70px;
+background:rgba(84,240,255,.13);
+filter:blur(3px);
+animation:pulse 4s infinite
+}
+
+.hero small{
+color:var(--accent);
+letter-spacing:3px;
+font-weight:800
+}
+
+.hero h1{
+margin:8px 0;
+font-size:34px;
+line-height:1.05
+}
+
+.hero p{font-size:15px}
+
+.sectionhead{
+display:flex;
+align-items:end;
+justify-content:space-between;
+margin:0 0 13px
+}
+
+.sectionhead h2{margin:0}
+
+.tag{
+font-size:11px;
+padding:6px 9px;
+border:1px solid var(--line);
+border-radius:999px;
+color:var(--muted)
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:13px
+}
+
+.card{
+overflow:hidden;
+border:1px solid var(--line);
+border-radius:20px;
+background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));
+box-shadow:0 10px 35px rgba(0,0,0,.18);
+cursor:pointer;
+transition:transform .25s,border-color .25s,box-shadow .25s;
+animation:rise .55s both
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:rgba(84,240,255,.35);
+box-shadow:0 18px 50px rgba(0,0,0,.3)
+}
+
+.pic{
+height:165px;
+background:radial-gradient(circle at 50% 45%,rgba(84,240,255,.1),transparent 48%),#0a0f18;
+display:grid;
+place-items:center;
+overflow:hidden
+}
+
+.pic img{
+width:100%;
+height:100%;
+object-fit:contain;
+padding:12px;
+transition:transform .5s
+}
+
+.card:hover .pic img{transform:scale(1.06)}
+
+.info{padding:14px}
+
+.info b{
+font-size:15px;
+line-height:1.25;
+display:block
+}
+
+.price{
+font-weight:950;
+font-size:19px;
+margin-top:8px
+}
+
+.muted{
+color:var(--muted);
+font-size:13px
+}
+
+.balance{
+padding:23px;
+border:1px solid var(--line);
+border-radius:22px;
+background:linear-gradient(135deg,rgba(84,240,255,.09),rgba(139,92,246,.08));
+box-shadow:var(--shadow)
+}
+
+.balance strong{
+display:block;
+font-size:35px;
+margin-top:7px
+}
+
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin:14px 0
+}
+
+.actions button,.row{
+padding:16px;
+background:rgba(255,255,255,.025);
+color:var(--text);
+border:1px solid var(--line);
+border-radius:13px
+}
+
+.actions button{cursor:pointer}
+
+.rows .row{
+margin:10px 0;
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.row button{
+border:0;
+border-radius:9px;
+background:rgba(84,240,255,.1);
+color:var(--accent);
+padding:7px 11px
+}
+
+.bottom{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:73px;
+background:rgba(7,10,18,.9);
+border-top:1px solid var(--line);
+backdrop-filter:blur(20px);
+display:grid;
+grid-template-columns:repeat(4,1fr);
+z-index:20;
+padding-bottom:env(safe-area-inset-bottom)
+}
+
+.bottom button{
+border:0;
+background:none;
+color:#737d90;
+cursor:pointer
+}
+
+.bottom .active{
+color:var(--accent);
+font-weight:900
+}
+
+.bottom span{
+display:block;
+font-size:20px;
+line-height:22px
+}
+
+.bottom small{
+display:block;
+font-size:10px;
+margin-top:2px
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(3,5,10,.96);
+z-index:30;
+overflow:auto;
+animation:modalIn .25s
+}
+
+.detail{
+max-width:700px;
+margin:auto;
+padding:12px 18px 55px
+}
+
+.back{
+border:0;
+background:rgba(255,255,255,.05);
+color:var(--text);
+font-size:23px;
+border-radius:12px;
+width:43px;
+height:43px
+}
+
+.detailpic{
+height:310px;
+margin-top:10px;
+background:radial-gradient(circle,rgba(84,240,255,.12),transparent 50%),#0a0f18;
+border:1px solid var(--line);
+border-radius:23px;
+display:grid;
+place-items:center;
+overflow:hidden
+}
+
+.detailpic img{
+width:100%;
+height:100%;
+object-fit:contain;
+padding:18px
+}
+
+.detail h1{
+font-size:29px;
+margin:18px 0 4px
+}
+
+.dprice{
+font-size:29px;
+font-weight:950;
+margin:10px 0
+}
+
+.note{
+font-size:11px;
+color:#737d90;
+line-height:1.5;
+margin:13px 0
+}
+
+.duration{
+padding:16px;
+margin:10px 0;
+cursor:pointer;
+border:1px solid var(--line);
+border-radius:15px;
+background:rgba(255,255,255,.025);
+transition:.2s
+}
+
+.duration.selected{
+border:1.5px solid var(--accent);
+background:rgba(84,240,255,.08);
+box-shadow:0 0 0 3px rgba(84,240,255,.06)
+}
+
+.duration b{font-size:16px}
+
+.duration .amount{
+margin-top:5px;
+color:#eaf0fa
+}
+
+.invest{
+width:100%;
+height:56px;
+background:linear-gradient(100deg,var(--accent),#8b5cf6);
+color:#05070c;
+border:0;
+border-radius:14px;
+font-weight:950;
+font-size:15px;
+cursor:pointer;
+box-shadow:0 15px 35px rgba(84,240,255,.14)
+}
+
+.detailsbox{
+border-top:1px solid var(--line);
+margin-top:25px;
+padding-top:18px
+}
+
+.feature{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+margin-top:14px
+}
+
+.feature div{
+padding:12px;
+border:1px solid var(--line);
+border-radius:13px;
+background:rgba(255,255,255,.025);
+font-size:11px;
+color:var(--muted)
+}
+
+.empty{
+padding:25px;
+border:1px dashed var(--line);
+border-radius:16px;
+color:var(--muted);
+text-align:center
+}
+
+@keyframes float{
+50%{transform:translateY(-8px) rotate(2deg)}
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden}
+}
+
+@keyframes pulse{
+50%{transform:scale(1.25);opacity:.55}
+}
+
+@keyframes rise{
+from{opacity:0;transform:translateY(14px)}
+to{opacity:1;transform:none}
+}
+
+@keyframes modalIn{
+from{opacity:0;transform:translateY(15px)}
+to{opacity:1;transform:none}
+}
+
+@media(min-width:700px){
+.grid{grid-template-columns:repeat(3,1fr)}
+.pic{height:190px}
+.tab{
+padding-left:24px;
+padding-right:24px
+}
+}
+</style>
+</head>
+
+<body>
+
+<div id="splash">
+<div class="u">U</div>
+<div class="sname">UNITREE</div>
+<div class="sline"></div>
+</div>
+
+<section id="login" class="login">
+<div class="box">
+
+<div class="brand">UNITREE</div>
+<p class="sub">Robotics marketplace</p>
+
+<form id="lf">
+
+<label>Username</label>
+<input id="username" required autocomplete="username">
+
+<label>Password</label>
+<input id="password" type="password" required autocomplete="current-password">
+
+<button class="btn" style="margin-top:20px">LOGIN</button>
+
+</form>
+
+<p class="sub" style="text-align:center;margin-top:25px">
+New user?
+</p>
+
+<a class="wa"
+href="https://wa.me/918919277489?text=Hello%20UNITREE%2C%20I%20want%20to%20register."
+target="_blank">
+WhatsApp Registration
+</a>
+
+</div>
+</section>
+
+<section id="app" class="hidden">
+
+<header class="header">
+<div class="brand">UNITREE</div>
+<button class="help" onclick="tab('support')">Help</button>
+</header>
+
+<main id="home" class="tab">
+
+<div class="hero">
+<small>WELCOME TO UNITREE</small>
+<h1>Explore Robotics</h1>
+<p class="sub">
+Discover programmable robots, AI platforms and robotic systems.
+</p>
+</div>
+
+<div class="sectionhead">
+<h2>Products</h2>
+<span class="tag">10 robots</span>
+</div>
+
+<div id="grid" class="grid"></div>
+
+</main>
+
+<main id="wallet" class="tab hidden">
+
+<h1>Wallet</h1>
+
+<div class="balance">
+<span class="sub">Coin Balance</span>
+<strong id="bal">₹0</strong>
+</div>
+
+<div class="actions">
+
+<button onclick="window.open('https://wa.me/918919277489?text=Hello%20UNITREE%2C%20I%20want%20to%20add%20money%20to%20my%20wallet.','_blank')">
+＋ Add Money
+</button>
+
+<button onclick="withdraw()">
+↗ Withdraw
+</button>
+
+</div>
+
+<h2>Transactions</h2>
+
+<div id="tx" class="rows">
+<div class="empty">No transactions yet.</div>
+</div>
+
+</main>
+
+<main id="my" class="tab hidden">
+
+<h1>My Products</h1>
+
+<h2>Invested</h2>
+
+<div id="active" class="rows">
+<div class="empty">No positions yet.</div>
+</div>
+
+<h2>Trending</h2>
+
+<div id="trend" class="grid"></div>
+
+</main>
+
+<main id="profile" class="tab hidden">
+
+<h1>Profile</h1>
+
+<div class="balance">
+
+<span class="sub">Account</span>
+
+<strong style="font-size:26px">
+UNITREE User
+</strong>
+
+<p class="sub">
+Username:
+<span id="profileUser">User</span>
+</p>
+
+</div>
+
+<div class="rows">
+
+<div class="row">
+<span>My Products</span>
+<button onclick="tab('my')">Open</button>
+</div>
+
+<div class="row">
+<span>Wallet</span>
+<button onclick="tab('wallet')">Open</button>
+</div>
+
+<div class="row">
+<span>Help & Support</span>
+<button onclick="tab('support')">Open</button>
+</div>
+
+<div class="row">
+<span>Logout</span>
+<button onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+</main>
+
+<main id="support" class="tab hidden">
+
+<h1>Support</h1>
+
+<p class="sub">
+Contact UNITREE through WhatsApp.
+</p>
+
+<a class="wa"
+href="https://wa.me/918919277489?text=Hello%20UNITREE%20Support"
+target="_blank">
+Message on WhatsApp
+</a>
+
+</main>
+
+<nav class="bottom">
+
+<button class="active" onclick="tab('home')">
+<span>⌂</span>
+<small>Home</small>
+</button>
+
+<button onclick="tab('my')">
+<span>▣</span>
+<small>My Products</small>
+</button>
+
+<button onclick="tab('wallet')">
+<span>◉</span>
+<small>Wallet</small>
+</button>
+
+<button onclick="tab('profile')">
+<span>◉</span>
+<small>Profile</small>
+</button>
+
+</nav>
+
+</section>
+
+<div id="modal" class="modal hidden">
+
+<div class="detail">
+
+<button class="back" onclick="closeM()">←</button>
+
+<div id="dp" class="detailpic"></div>
+
+<h1 id="dn"></h1>
+
+<div id="dt" class="sub"></div>
+
+<div id="dprice" class="dprice"></div>
+
+<div class="note">
+Amounts shown are illustrative interface calculations. Any live financial functionality should only be enabled after the required legal and compliance review.
+</div>
+
+<h3>Select duration</h3>
+
+<div id="dur"></div>
+
+<button class="invest" onclick="invest()">
+INVEST
+</button>
+
+<div class="detailsbox">
+
+<h2>Product Details</h2>
+
+<p class="sub">
+Robotics product information and specifications can be added here.
+</p>
+
+<div class="feature">
+<div>⚡ Smart control</div>
+<div>◉ Robotics platform</div>
+<div>◆ Expandable</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+const API_URL="https://unitree-backend-oou8.onrender.com";
+
+const P=[
+["Mini Smart Robot Car","Mobile robot",189,"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=85"],
+["4-DOF Robotic Arm Kit","Robotic arm",612,"https://www.botnroll.com/20556-home_default/roarm-m2-s-high-torque-serial-bus-servo-desktop-robotic-arm-kit-based-on-esp32-4-dof.jpg"],
+["AI Vision Robot Car","AI robot",1752,"https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=900&q=85"],
+["PiDog AI Robot Dog","Robot dog",3542,"https://www.sunfounder.com/cdn/shop/files/sunfounder-default-title-sunfounder-pidog-ai-robot-dog-kit-for-raspberry-pi-5-4-3b-zero-2w-llms-chatgpt-4o-gemini-grok-voice-video-recognition-python-app-control-battery-gyroscope-camera-rpi-not-included-38845517037803_800x.jpg?v=1768412806"],
+["RoArm-M2","Robotic arm",6999,"https://www.botnroll.com/20556-home_default/roarm-m2-s-high-torque-serial-bus-servo-desktop-robotic-arm-kit-based-on-esp32-4-dof.jpg"],
+["MechDog","Quadruped",12999,"https://thebrainary.com.au/cdn/shop/files/Mechdog.png?v=1779757310&width=1946"],
+["Yali","Quadruped",17999,"https://images.unsplash.com/photo-1561144257-e32e8a5f7d3b?auto=format&fit=crop&w=900&q=85"],
+["JetRover","Mobile AI robot",21999,"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85"],
+["Advanced Humanoid Robot","Humanoid",45000,"https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=900&q=85"],
+["Unitree Go2","Quadruped",45000,"https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?auto=format&fit=crop&w=900&q=85"]
+];
+
+const D=[
+["7 days",120],
+["12 days",160],
+["25 days",210]
+];
+
+let balance=0;
+let positions=[];
+let selected=null;
+let duration=7;
+
+const money=n=>"₹"+Number(n).toLocaleString("en-IN",{maximumFractionDigits:2});
+
+function img(url,name){
+return `<img src="${url}" alt="${name}" loading="lazy" onerror="this.style.display='none';this.parentElement.textContent='🤖'>`
+}
+
+function cards(){
+return P.map((p,i)=>
+`<article class="card" onclick="openP(${i})" style="animation-delay:${i*45}ms">
+<div class="pic">${img(p[3],p[0])}</div>
+<div class="info">
+<b>${p[0]}</b>
+<div class="muted">${p[1]}</div>
+<div class="price">${money(p[2])}</div>
+</div>
+</article>`
+).join("")
+}
+
+grid.innerHTML=cards();
+trend.innerHTML=cards();
+
+setTimeout(()=>{
+splash.classList.add("hidden")
+},1250);
+
+
+/* REAL BACKEND LOGIN */
+
+lf.onsubmit=async e=>{
+
+e.preventDefault();
+
+const user=username.value.trim();
+const pass=password.value;
+
+if(!user||!pass){
+alert("Enter username and password.");
+return;
+}
+
+const button=lf.querySelector("button");
+
+button.disabled=true;
+button.textContent="LOGIN...";
+
+try{
+
+const response=await fetch(`${API_URL}/auth/login`,{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+username:user,
+password:pass
+})
+});
+
+const data=await response.json();
+
+if(!response.ok||!data.success){
+throw new Error(data.message||"Login failed");
+}
+
+localStorage.setItem(
+"unitree_user",
+JSON.stringify(data.user)
+);
+
+profileUser.textContent=data.user.username;
+
+login.classList.add("hidden");
+app.classList.remove("hidden");
+
+render();
+
+}catch(error){
+
+alert(error.message||"Unable to connect to UNITREE server.");
+
+}finally{
+
+button.disabled=false;
+button.textContent="LOGIN";
+
+}
+
+};
+
+
+function tab(x){
+
+document.querySelectorAll(".tab")
+.forEach(e=>e.classList.add("hidden"));
+
+document.getElementById(x)
+.classList.remove("hidden");
+
+document.querySelectorAll(".bottom button")
+.forEach(e=>e.classList.remove("active"));
+
+const map={
+home:0,
+my:1,
+wallet:2,
+profile:3
+};
+
+if(map[x]!==undefined){
+
+document.querySelectorAll(".bottom button")
+[map[x]].classList.add("active");
+
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+function logout(){
+
+localStorage.removeItem("unitree_user");
+location.reload();
+
+}
+
+
+function openP(i){
+
+selected=i;
+
+let p=P[i];
+
+dp.innerHTML=img(p[3],p[0]);
+
+dn.textContent=p[0];
+
+dt.textContent=p[1];
+
+dprice.textContent=money(p[2]);
+
+dur.innerHTML=D.map((d,i)=>{
+
+let profit=p[2]*d[1]/100;
+
+let total=p[2]+profit;
+
+return `<div class="duration ${i==0?'selected':''}" onclick="selDur(${i},this)">
+<b>${d[0]}</b>
+<div class="amount">
+${money(p[2])} + ${money(profit)} =
+<strong>${money(total)}</strong>
+</div>
+</div>`
+
+}).join("");
+
+duration=7;
+
+modal.classList.remove("hidden");
+
+document.body.style.overflow="hidden";
+
+}
+
+
+function selDur(i,el){
+
+document.querySelectorAll(".duration")
+.forEach(x=>x.classList.remove("selected"));
+
+el.classList.add("selected");
+
+duration=Number(
+D[i][0].split(" ")[0]
+);
+
+}
+
+
+function closeM(){
+
+modal.classList.add("hidden");
+
+document.body.style.overflow="";
+
+}
+
+
+function invest(){
+
+let p=P[selected];
+
+if(balance<p[2]){
+
+alert(
+"Balance is insufficient. Use Add Money in Wallet to add coins."
+);
+
+return;
+
+}
+
+balance-=p[2];
+
+positions.push({
+p,
+duration,
+start:Date.now()
+});
+
+render();
+
+closeM();
+
+tab("my");
+
+}
+
+
+function render(){
+
+bal.textContent=money(balance);
+
+active.innerHTML=positions.map(x=>{
+
+let days=Math.max(
+0,
+Math.ceil(
+(x.start+86400000*x.duration-Date.now())
+/86400000
+)
+);
+
+return `<div class="row">
+<span>
+<b>${x.p[0]}</b>
+<br>
+<small class="muted">
+${x.duration} days • ${days} days remaining
+</small>
+</span>
+<b>${money(x.p[2])}</b>
+</div>`
+
+}).join("")
+||
+'<div class="empty">No positions yet.</div>';
+
+}
+
+
+function withdraw(){
+
+alert(
+"Withdrawal form: Name, bank name, account number, IFSC and amount. Connect this only after the required legal/compliance review."
+);
+
+}
+
+render();
+
+</script>
+
+</body>
+</html>
