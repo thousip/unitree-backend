@@ -1,4 +1,4 @@
-const db = require("./database");
+const db = require("./database.js");
 const Fastify = require("fastify");
 const cors = require("@fastify/cors");
 const helmet = require("@fastify/helmet");
