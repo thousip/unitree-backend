@@ -1,0 +1,17 @@
+{
+  "name": "unitree-backend",
+  "version": "1.0.0",
+  "description": "UNITREE secure backend API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fastify": "^5.0.0",
+    "@fastify/cors": "^10.0.0",
+    "@fastify/helmet": "^13.0.0",
+    "@fastify/rate-limit": "^10.0.0",
+    "pg": "^8.13.0",
+    "argon2": "^0.41.1"
+  }
+}
