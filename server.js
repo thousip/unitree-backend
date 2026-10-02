@@ -1,3 +1,4 @@
+const { registerUser, loginUser } = require("./auth");
 const { Pool } = require("pg");
 
 const db = new Pool({
@@ -45,6 +46,45 @@ app.get("/db-test", async () => {
     status: "database connected",
     time: result.rows[0].time
   };
+});
+app.post("/auth/register", async (request, reply) => {
+  try {
+    const { username, password } = request.body || {};
+
+    const user = await registerUser(db, username, password);
+
+    return reply.code(201).send({
+      success: true,
+      user
+    });
+  } catch (error) {
+    request.log.error(error);
+
+    return reply.code(400).send({
+      success: false,
+      message: error.message
+    });
+  }
+});
+
+app.post("/auth/login", async (request, reply) => {
+  try {
+    const { username, password } = request.body || {};
+
+    const user = await loginUser(db, username, password);
+
+    return reply.send({
+      success: true,
+      user
+    });
+  } catch (error) {
+    request.log.error(error);
+
+    return reply.code(401).send({
+      success: false,
+      message: error.message
+    });
+  }
 });
 const PORT = process.env.PORT || 3000;
 
