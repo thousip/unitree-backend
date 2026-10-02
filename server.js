@@ -1,3 +1,4 @@
+const db = require("./database");
 const Fastify = require("fastify");
 const cors = require("@fastify/cors");
 const helmet = require("@fastify/helmet");
@@ -31,7 +32,13 @@ app.get("/health", async () => {
     status: "healthy"
   };
 });
-
+app.get("/db-test", async () => {
+  const result = await db.query("SELECT NOW() AS time");
+  return {
+    status: "database connected",
+    time: result.rows[0].time
+  };
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen({
