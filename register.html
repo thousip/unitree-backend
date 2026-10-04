@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNITREE Test Registration</title>
+</head>
+
+<body>
+  <h2>UNITREE Test Registration</h2>
+
+  <button onclick="registerUser()">Create ooopp Account</button>
+
+  <pre id="result"></pre>
+
+  <script>
+    const API_URL = "YOUR_BACKEND_RENDER_URL";
+
+    async function registerUser() {
+      const result = document.getElementById("result");
+
+      try {
+        const response = await fetch(`${API_URL}/auth/register`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            username: "ooopp",
+            password: "00000000"
+          })
+        });
+
+        const data = await response.json();
+
+        result.textContent = JSON.stringify(data, null, 2);
+
+      } catch (error) {
+        result.textContent = "ERROR: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
