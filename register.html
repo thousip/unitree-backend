@@ -11,7 +11,7 @@
 
   <button onclick="registerUser()">Create ooopp Account</button>
 
-  <pre id="result"></pre>
+  <pre id="result">Ready...</pre>
 
   <script>
     const API_URL = "YOUR_BACKEND_RENDER_URL";
@@ -31,12 +31,15 @@
           })
         });
 
-        const data = await response.json();
+        const text = await response.text();
 
-        result.textContent = JSON.stringify(data, null, 2);
+        result.textContent =
+          "HTTP STATUS: " + response.status +
+          "\n\nSERVER RESPONSE:\n" +
+          (text || "(empty response)");
 
       } catch (error) {
-        result.textContent = "ERROR: " + error.message;
+        result.textContent = "CONNECTION ERROR:\n" + error.message;
       }
     }
   </script>
